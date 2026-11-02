@@ -64,6 +64,24 @@ final class ImageUploadBundleTest extends TestCase
         yield 'WebP' => ['webp', 'webp'];
     }
 
+    public function testIndependentHostsKeepTheirOwnStorageDirectories(): void
+    {
+        // Canonical paths let Symfony normalize different host directories to identical container code.
+        $root = realpath($this->directory);
+        foreach (self::formats() as [$format]) {
+            $directory = $root.'/'.$format;
+            $kernel = new HostKernel($directory);
+            try {
+                $kernel->boot();
+                $uploader = $kernel->getContainer()->get('test.image_uploader');
+                $filename = $uploader->upload($this->image($format));
+                self::assertFileExists($directory.'/images/'.$filename);
+            } finally {
+                $kernel->shutdown();
+            }
+        }
+    }
+
     #[DataProvider('invalidImages')]
     public function testInvalidImageIsRejectedByFormAndDirectUploader(string $kind): void
     {

@@ -51,6 +51,16 @@ final class HostKernel extends Kernel
         return dirname(__DIR__, 2);
     }
 
+    protected function getContainerClass(): string
+    {
+        // Separate cache directories can still produce the same normalized container class.
+        return parent::getContainerClass().'_'.hash('sha256', serialize([
+            $this->temporaryDirectory,
+            $this->maxSize,
+            $this->maxPixels,
+        ]));
+    }
+
     public function getCacheDir(): string
     {
         return $this->temporaryDirectory.'/cache';
