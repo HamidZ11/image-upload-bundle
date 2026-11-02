@@ -1,0 +1,44 @@
+{
+    "name": "hamid/image-upload-bundle",
+    "description": "Validated JPEG, PNG and WebP uploads for Symfony applications",
+    "keywords": ["symfony", "bundle", "image", "upload"],
+    "homepage": "https://github.com/HamidZ11/image-upload-bundle",
+    "support": {
+        "issues": "https://github.com/HamidZ11/image-upload-bundle/issues",
+        "source": "https://github.com/HamidZ11/image-upload-bundle"
+    },
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.4",
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
+        "psr/log": "^3.0",
+        "symfony/config": "^8.1",
+        "symfony/dependency-injection": "^8.1",
+        "symfony/form": "^8.1",
+        "symfony/http-foundation": "^8.1",
+        "symfony/http-kernel": "^8.1",
+        "symfony/mime": "^8.1",
+        "symfony/options-resolver": "^8.1",
+        "symfony/validator": "^8.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^13.4.5",
+        "symfony/filesystem": "^8.1",
+        "symfony/framework-bundle": "8.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hamid\\ImageUploadBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hamid\\ImageUploadBundle\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
